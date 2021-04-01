@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="maguro">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css">
+    <!-- bootstrap theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+</head>
+<body>
+ 
+    <header>
+      <h1 class="text-center">{{"Tanaka-San"}}'s Sushi Store</h1>
+      <h2 class="text-center">Open Since {{10*200}}.</h2>
+    </header>
+    <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+            <div class="list-group">                  
+              <div class="list-group" ng-controller="storeController as store" >
+                <div class="list-group-item" ng-repeat="sushi in sushiorder">
+                  <h1>{{sushi.name}}
+                    <em class="pull-right">{{sushi.price | number:2}} yen</em>
+                  </h1>
+                  <div class="row">
+                    <div class="col-md-6"><img ng-src="{{sushi.image}}" /></div>
+                    <div class="col-md-6">
+                        <h3><strong>{{sushi.quantity}}</strong></h3>
+                        <button class="btn btn-default pull-right" ng-show="purchase(sushi)">สั่งซื้อ </button>
+                        <button class="btn btn-default" ng-click="clickAdd(sushi)">Δ</button>
+                        <button class="btn btn-default" ng-click="clickRemove(sushi)">∇</button>
+                    </div>
+                </div>
+                    <p>{{sushi.dateto | date}} - {{sushi.description}} </p>
+                        <div ng-show="sushi.canPurchase">
+                            ใส่วาซาบิ : <input type="checkbox"  ng-model="checked"/></br>
+                        <button class="btn btn-default" ng-show="sushi.canPurchase" >สั่งซื้อ</button>
+                    <h3 ng-hide="sushi.canPurchase">ขายหมดแล้วจ้า</h3>
+                  </div>
+                </div>
+            </div>
+          </div>
+          </div>s
+      </div>
+  </div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="lib/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="lib/bootstrap.min.js"></script>
+    <!-- AngularJS JavaScript -->
+    <script src="lib/angular.min.js"></script>
+    <script src="app.js"></script>
+  </div>
+</body>
+</html>
